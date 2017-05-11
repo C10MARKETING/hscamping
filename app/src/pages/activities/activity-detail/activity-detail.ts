@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, App } from 'ionic-angular';
+import { NavController, NavParams, AlertController, App, LoadingController } from 'ionic-angular';
 
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import firebase from 'firebase'
@@ -34,10 +34,17 @@ export class ActivityDetailPage {
   tooLateToUnsubscribe: string;
   loginToSubscribe: string;
   loginCreateUser: string;
+  currentSubNotes: any;
+  currentSubActivity: any;
+  currentSubUsers: any;
+  currentSubParticipants: any;
+  currentSubInterestedIn: any;
+  isSubscribed: boolean = false;
 
   constructor(public navCtrl: NavController, navParams: NavParams, public authData: AuthData,
       public af: AngularFire, private userService: UserService, private translate: TranslateService,
-      private alertCtrl: AlertController, private appCtrl: App, private notifications: NotificationsService) {
+      private alertCtrl: AlertController, private appCtrl: App, private notifications: NotificationsService,
+      public loadingCtrl: LoadingController) {
 
     this.key = navParams.get('key');
 
@@ -52,27 +59,12 @@ export class ActivityDetailPage {
     this.interestedInObs = af.database.list('/activities/'+ this.key  + '/interestedIn');
     this.signupNotesObs = af.database.object('/settings/signupNotes/');
 
-    this.signupNotesObs.subscribe(notes => {
-      this.signupNotes = notes;
-    });
-
-    this.activityObs.subscribe(activity => {
-      if (activity.$exists()) this.activity = activity;
-    })
-    
-    userService.users.subscribe(users => {
-      this.users = users;
-
-      this.participantsObs.subscribe(participants => {
-        this.participants = participants;
-        this.participantNames = this.participants.map(participant => this.getUsername(participant.uid))
-      });
-
-      this.interestedInObs.subscribe(interestedIn => {
-        this.interestedIn = interestedIn;
-      });
-
-    });
+    var that = this;
+    if (!this.isSubscribed) {
+      this.isSubscribed = true;
+      /*setTimeout(function() { that.subscribe() }, 100);*/
+      that.subscribe();
+    }
 
     translate.get('ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED').subscribe(
       value => { this.maxAmountOfParticipantsExceeded = value })
@@ -86,6 +78,38 @@ export class ActivityDetailPage {
     translate.get('ACTIVITY_DETAIL_TOO_LATE_TO_UNSUBSCRIBE').subscribe(
       value => { this.tooLateToUnsubscribe = value })
 
+  }
+
+  subscribe() {
+    this.currentSubNotes = this.signupNotesObs.subscribe(notes => {
+      this.signupNotes = notes;
+    });
+
+    this.currentSubActivity = this.activityObs.subscribe(activity => {
+      if (activity.$exists()) this.activity = activity;
+    })
+    
+    this.currentSubUsers = this.userService.users.subscribe(users => {
+      this.users = users;
+
+      this.currentSubParticipants = this.participantsObs.subscribe(participants => {
+        this.participants = participants;
+        this.participantNames = this.participants.map(participant => this.getUsername(participant.uid))
+      });
+
+      this.currentSubInterestedIn = this.interestedInObs.subscribe(interestedIn => {
+        this.interestedIn = interestedIn;
+      });
+
+    });
+  }
+
+  ngOnDestroy() {
+    this.currentSubNotes.unsubscribe();
+    this.currentSubActivity.unsubscribe();
+    this.currentSubUsers.unsubscribe();
+    this.currentSubParticipants.unsubscribe();
+    this.currentSubInterestedIn.unsubscribe();
   }
 
   isThisUser(username) {
@@ -120,7 +144,6 @@ export class ActivityDetailPage {
 
     // checking if activity still exists
     firebase.database().ref('/activities/').child(this.key).once('value', (snapshot) => {
-      if (snapshot.exists()) {
         if(!this.isSignedUp())
         {
           // check if activity has room for more participants
@@ -134,19 +157,26 @@ export class ActivityDetailPage {
             return;
           }
 
-          this.participantsObs.push({uid: this.authData.fireAuth.uid, confirmed: false}).then(() => {
+          let loading = this.loadingCtrl.create({
+          });
 
-            // schedule locale notification
-            this.notifications.createNotification(this.activity);
-            
-            // show subscription note
-            let alert = this.alertCtrl.create({
-                message: this.signupNotes[this.activity.category][this.translate.currentLang],
-                buttons: [{ text: "Ok", role: 'cancel' } ]
+          loading.present().then(() => {
+
+            this.participantsObs.push({uid: this.authData.fireAuth.uid, confirmed: false}).then(() => {
+
+              // schedule locale notification
+              this.notifications.createNotification(this.activity);
+
+              loading.dismiss();
+
+              // show subscription note
+              let alert = this.alertCtrl.create({
+                  message: this.signupNotes[this.activity.category][this.translate.currentLang],
+                  buttons: [{ text: "Ok", role: 'cancel' } ]
+              });
+              alert.present();
+
             });
-            alert.present();
-
-
           });
         }
         else
@@ -164,13 +194,17 @@ export class ActivityDetailPage {
             alert.present();
             return;
           }
-          // remove scheduled locale notification
-          this.notifications.deleteNotification(this.activity);
-          
-          var key = this.participants.find(user => this.authData.fireAuth.uid === user.uid).$key;
-          this.participantsObs.remove(key).then(_ => console.log("item deleted"));
+
+          let loading = this.loadingCtrl.create({
+          });
+
+          loading.present().then(() => {
+            // remove scheduled locale notification
+            this.notifications.deleteNotification(this.activity);
+            var key = this.participants.find(user => this.authData.fireAuth.uid === user.uid).$key;
+            this.participantsObs.remove(key).then(() => loading.dismiss());
+          });
         }
-      }
     });
   }
 
@@ -189,12 +223,22 @@ export class ActivityDetailPage {
       if (snapshot.exists()) {
         if(!this.isInterestedIn())
         {
-          this.interestedInObs.push({ uid: this.authData.fireAuth.uid });
+          let loading = this.loadingCtrl.create({
+          });
+          loading.present().then(() => {
+            this.interestedInObs.push({ uid: this.authData.fireAuth.uid }).then(() => {
+              loading.dismiss();
+            });
+          });
         }
         else
         {
-          var key = this.interestedIn.find(user => this.authData.fireAuth.uid === user.uid).$key;
-          this.interestedInObs.remove(key).then(_ => console.log("item deleted"));
+          let loading = this.loadingCtrl.create({
+          });
+          loading.present().then(() => {
+            var key = this.interestedIn.find(user => this.authData.fireAuth.uid === user.uid).$key;
+            this.interestedInObs.remove(key).then(() => loading.dismiss());
+          });
         } 
       }
     });

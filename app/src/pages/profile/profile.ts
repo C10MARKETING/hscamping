@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
@@ -11,7 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-profile',
-  templateUrl: 'profile.html'
+  templateUrl: 'profile.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfilePage {
 
@@ -21,18 +22,37 @@ export class ProfilePage {
   activities: any[] = [];
   dates: any[] = [];
   isLoggedIn: boolean = false;
+  currentSub: any;
+  isSubscribed: boolean = false;
+  res: any[] = [];
 
   constructor(public navCtrl: NavController, private activityService: ActivityService, private authData: AuthData,
-      private af: AngularFire, private translate: TranslateService) {
+      private af: AngularFire, private translate: TranslateService, private ref: ChangeDetectorRef) {
   }
 
   ionViewWillEnter(){
     this.isLoggedIn = this.authData.fireAuth;
 
-    this.activityService.currentActivities.subscribe(activities => {
+    var that = this;
+    if (!this.isSubscribed) {
+      this.isSubscribed = true;
+      setTimeout(function() { that.subscribe() }, 100);
+    }
+  }
+
+  subscribe(){
+    this.currentSub = this.activityService.currentActivities.subscribe(activities => {
       this.currentItems = activities.filter(activity => !this.activityService.isPastActivity(activity));
+      this.signedUpFor.length = 0;
+      this.interestedIn.length = 0;
+      this.dates.length = 0;
       this.currentItems.forEach(activity => this.mapToLists(activity));
+      this.ref.markForCheck();
     });
+  }
+
+  ngOnDestroy(){
+    this.currentSub.unsubscribe();
   }
 
     /**
@@ -45,10 +65,6 @@ export class ProfilePage {
   }
 
   mapToLists(activity:any){
-    this.signedUpFor = [];
-    this.interestedIn = [];
-    this.dates = [];
-
     if (!this.authData.fireAuth) return;
 
     var subParticipants = this.af.database.list('activities/'+ activity.$key + '/participants').subscribe(participants => {
@@ -66,6 +82,7 @@ export class ProfilePage {
       persons.forEach(person => {
         if (person.uid == this.authData.fireAuth.uid)
         {
+
           this.interestedIn.push(activity);
           this.checkAddDate(activity);
         }
@@ -82,13 +99,13 @@ export class ProfilePage {
   }
 
   getActivities(date:any){
-    const res: any[] = [];
-    this.activities = [];
+    this.res.length = 0;
+    this.activities.length = 0;
 
     this.signedUpFor.forEach(activity => {
       this.activities.push({activity: activity, subscribed: true});
     });
-
+console.log("bleh");
     this.interestedIn.forEach(activity => {
       //we dont want to add an interestedIn(activity) if the user is already subscribed to it
 
@@ -108,10 +125,10 @@ export class ProfilePage {
     //only return activities corresponding to the input date
     this.activities.forEach(activity => {
       if (activity.activity.date === date) {
-        res.push(activity);
+        this.res.push(activity);
       }
     })
-    return res;
+    return this.res;
   }
 
 }

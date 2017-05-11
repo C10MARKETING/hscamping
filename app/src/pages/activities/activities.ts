@@ -25,6 +25,7 @@ export class ActivitiesPage {
   noActivities: string;
   noDates: string;
   guestOn: string;
+  isSubscribed: boolean = false;
 
   constructor(public navCtrl: NavController, af: AngularFire, public activityService: ActivityService, private translate: TranslateService,
       private userService: UserService, private authData: AuthData) {
@@ -44,6 +45,14 @@ export class ActivitiesPage {
       this.activityService.shouldUpdateActivityList = false;
     }
 
+    var that = this;
+    if (!this.isSubscribed) {
+      this.isSubscribed = true;
+      setTimeout(function() { that.subscribe() }, 100);
+    }
+  }
+
+  subscribe() {
     this.currentSub = this.activityService.currentActivities.subscribe(activities => {
       this.currentItems = activities.filter(activity => !this.activityService.isPastActivity(activity));
 
@@ -69,7 +78,7 @@ export class ActivitiesPage {
     });
   }
 
-  ionViewWillLeave(){
+  ngOnDestroy(){
     this.currentSub.unsubscribe();
   }
 

@@ -38,6 +38,7 @@
   "SIGNUP_GUEST_ON_CAMPING": "Henne Strand Camping",
   "SIGNUP_GUEST_ON_PARTNER": "Feriepartner Henne Strand",
   "SIGNUP_ERROR": "Fejl ved oprettelse af bruger.",
+  "SIGNUP_PREFERRED_LANGUAGE": "Foretrukne sprog", 
 
   "TAB1_TITLE": "Hjem",
   "TAB2_TITLE": "Aktiviteter",

@@ -7,6 +7,7 @@ import { ActivityService } from '../../providers/activity.service';
 import { UserService } from '../../providers/user.service';
 import { AuthData } from '../../providers/auth-data';
 import { TranslateService } from '@ngx-translate/core';
+import { AngularFire } from 'angularfire2';
 
 import * as moment from 'moment';
 
@@ -19,7 +20,7 @@ export class HomePage {
   whatsHappening: any[];
 
   constructor(public navCtrl: NavController, private activityService: ActivityService, private userService: UserService, private authData: AuthData,
-       private translate: TranslateService) {
+       private translate: TranslateService, private af: AngularFire) {
 
     activityService.currentActivities.subscribe(activities => {
       this.whatsHappening = activities.filter(activity => !this.activityService.isPastActivity(activity));
@@ -46,6 +47,33 @@ export class HomePage {
 
     });
 
+  }
+
+  ionViewDidEnter(){
+    this.setUserLanguage();
+  }
+
+  setUserLanguage() {
+    // change app language
+    let uid;
+    let users;
+
+    let afSub = this.af.auth.subscribe( user => {
+      if (user) {
+        uid = user.auth.uid;
+      }
+      else return;
+
+      let userSub = this.userService.users.subscribe( userlist => {
+        users = userlist;
+        this.translate.use(this.userService.getLanguage(uid, users));
+        if (afSub)
+          afSub.unsubscribe();
+        if (userSub)
+          userSub.unsubscribe();
+      });
+      
+    });
   }
 
   getGuestOn(){

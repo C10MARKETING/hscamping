@@ -13,6 +13,8 @@
 
   <p class="subheader">{{'PROFILE_SUBHEADER' | translate}}</p>
 
+  <div *ngIf="!currentItems" class="spinner"></div>
+
   <div *ngFor="let date of dates | sortByDate" style="margin-bottom:25px;">
   
     <p style="margin-bottom: 8px;">{{date | localizeDate}}</p>

@@ -20,6 +20,15 @@ If in doubt, consult the docs: http://ionicframework.com/docs/v1/guide/publishin
 one-liner for signed .apk:
 ionic build android --release -- --keystore="./hscamping.keystore" --storePassword=hscamping42 --alias=hscamping --password=hscamping42
 
+for ios these installs are needed:
+
+npm install -g ios-sim
+npm install -g ios-deploy --unsafe-perm=true
+
+NB! for ios, a "sudo" prefix may be needed (i.e. sudo npm install...)
+
+"ionic resources" may need to be run to ensure that the correct resources are available to the build.
+
 ----
 
 Ionic Cloud Build (https://docs.ionic.io/services/package/):

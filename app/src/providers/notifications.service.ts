@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, AlertController } from 'ionic-angular';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { TranslateService } from '@ngx-translate/core';
 import { App } from 'ionic-angular';
@@ -12,7 +12,7 @@ export class NotificationsService {
   activityIn: string;
   minutes: string;
 
-  constructor(private translate: TranslateService, private app: App, private LocalNotifications: LocalNotifications, private platform: Platform) {
+  constructor(private translate: TranslateService, private app: App, private LocalNotifications: LocalNotifications, private platform: Platform, private alertCtrl: AlertController) {
 
     this.translate.get('NOTIFICATIONS_ACTIVITYSTARTSIN').subscribe(
       value => { this.activityIn = value; })
@@ -20,13 +20,34 @@ export class NotificationsService {
     this.translate.get('NOTIFICATIONS_MINUTES').subscribe(
       value => { this.minutes = value; })
 
-      if (platform.is('cordova')) {
-        this.LocalNotifications.on('click', (event) => {
-          console.log(event)
-          let data = JSON.parse(event.data)
-          this.openItem(data.aid) 
+    if (platform.is('cordova')) {
+
+      LocalNotifications.registerPermission();
+
+      LocalNotifications.on('click', (event) => {
+        console.log(event)
+        let data = JSON.parse(event.data)
+        this.openItem(data.aid) 
+      });
+
+/*      LocalNotifications.on('trigger', function (notification) {
+        console.log(notification);
+        //to handle notification popup in foreground.
+        let alert = alertCtrl.create({
+            message: notification.title + ". " + notification.text + ".",
+            buttons: [{ text: "Ok", role: 'cancel' } ]
         });
-      }
+        alert.present();
+      });
+
+      LocalNotifications.schedule({
+        id: 1337,
+        at: moment().valueOf() + 2000,
+        title: "davs",
+        text: "tekst",
+        data: { aid: 32, startsIn: 33 }
+      });*/
+    }
   }
 
   deleteNotification(activity) {

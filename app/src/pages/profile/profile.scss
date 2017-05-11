@@ -17,6 +17,16 @@ page-profile {
         text-align: center;
     }
 
+    .spinner {
+        border: 3px solid #ACC6C7;
+        border-top: 3px solid transparent;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1.5s linear infinite;
+        margin: 50px auto;
+    }
+
     //All of the below styles are copied from ACTIVITIESPAGE and should be moved to their own component
     .list-item {
         padding: 0;

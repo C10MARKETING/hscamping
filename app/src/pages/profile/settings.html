@@ -33,6 +33,17 @@
                   <ion-radio value="partner"></ion-radio>
               </ion-item>
           </ion-list>
+          <p>{{'SIGNUP_PREFERRED_LANGUAGE' | translate}}</p>
+          <ion-list #prefLang formControlName="prefLang" radio-group [(ngModel)]="currentPrefLang">
+              <ion-item>
+                  <ion-label>dansk</ion-label>
+                  <ion-radio value="da"></ion-radio>
+              </ion-item>
+              <ion-item>
+                  <ion-label>deutsch</ion-label>
+                  <ion-radio value="de"></ion-radio>
+              </ion-item>
+          </ion-list>
           <p>{{'SETTINGS_CURRENTPASSWORD' | translate}}</p>
           <ion-input #currentPassword formControlName="currentPassword" type="password" (change)="elementChanged(currentPassword)" placeholder="Password" [(ngModel)]="currentCurrentPassword" [class.invalid]="!settingsForm.controls.currentPassword.valid && (currentPasswordChanged || submitAttempt)"></ion-input>
           <ion-item class="error-message" *ngIf="!settingsForm.controls.currentPassword.valid && (currentPasswordChanged || submitAttempt)">

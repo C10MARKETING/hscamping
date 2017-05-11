@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Globalization } from '@ionic-native/globalization';
 
 import { FirstRunPage } from '../pages/pages';
 import { MainPage } from '../pages/pages'
 import { AngularFire } from 'angularfire2';
 
 import { TranslateService } from '@ngx-translate/core';
+import { NotificationsService } from '../providers/notifications.service';
 
 import { Firebase } from '@ionic-native/firebase';
 
@@ -17,8 +19,8 @@ import { Firebase } from '@ionic-native/firebase';
 export class MyApp {
   rootPage: any;
 
-  constructor(translate: TranslateService, platform: Platform, public af: AngularFire, private alertCtrl: AlertController, private firebase: Firebase,
-  statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(private translate: TranslateService, platform: Platform, public af: AngularFire, private alertCtrl: AlertController, private firebase: Firebase,
+  statusBar: StatusBar, splashScreen: SplashScreen, private globalization: Globalization, notifications: NotificationsService) {
 
     const authObserver = af.auth.subscribe( user => {
       if (user) {
@@ -32,12 +34,20 @@ export class MyApp {
 
     // Set the default language for translation strings, and the current language.
     translate.setDefaultLang('da');
-    translate.use('da')
+    translate.use('da');
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       if (platform.is('cordova')) {
+        globalization.getPreferredLanguage().then(lang => {
+          if (lang.value === "da-DK") {
+              translate.use('da')
+          }
+          else if (lang.value=== "de-DE") {
+              translate.use('de')
+          }
+        });
         statusBar.styleDefault();
         statusBar.overlaysWebView(false);
         splashScreen.hide();

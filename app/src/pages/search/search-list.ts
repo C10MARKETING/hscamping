@@ -26,6 +26,7 @@ export class SearchListPage {
   noActivities: string;
   noDates: string;
   guestOn: string;
+  isSubscribed: boolean = false;
 
   constructor(public navCtrl: NavController, af: AngularFire, public activityService: ActivityService, private translate: TranslateService,
         private userService: UserService, private authData: AuthData) {
@@ -41,6 +42,14 @@ export class SearchListPage {
     this.noDates = this.loading;
     this.currentSearch = this.activityService.searchObject ? this.activityService.searchObject.searchRule : "";
 
+    var that = this;
+    if (!this.isSubscribed) {
+      this.isSubscribed = true;
+      setTimeout(function() { that.subscribe() }, 100);
+    }
+  }
+
+  subscribe() {
     this.currentSub = this.activityService.currentActivities.subscribe(activities => {
       this.currentItems = activities.filter(activity => !this.activityService.isPastActivity(activity));
 
@@ -74,7 +83,7 @@ export class SearchListPage {
     });
   }
 
-  ionViewDidLeave(){
+  ngOnDestroy(){
     this.currentSub.unsubscribe();
   }
 

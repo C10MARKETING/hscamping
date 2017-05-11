@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Firebase } from '@ionic-native/firebase';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Globalization } from '@ionic-native/globalization';
 
 import { HttpModule, Http } from '@angular/http';
 
@@ -51,6 +52,17 @@ export const firebaseConfig = {
   storageBucket: "hscamping-9c323.appspot.com",
   messagingSenderId: "761576838574"
 };
+
+/* DEV ENVIRONMENT START */
+/*export const firebaseConfig = {
+    apiKey: "AIzaSyBhcHZHktqTGdUra0xOI7hX64d2EHJcg5Q",
+    authDomain: "hscampingdev.firebaseapp.com",
+    databaseURL: "https://hscampingdev.firebaseio.com",
+    projectId: "hscampingdev",
+    storageBucket: "hscampingdev.appspot.com",
+    messagingSenderId: "495881320128"
+};*/
+/* DEV ENVIRONMENT END */
 
 const myFirebaseAuthConfig = {
   provider: AuthProviders.Password,
@@ -102,6 +114,7 @@ let pipes:any[] = [
     BrowserAnimationsModule,
     HttpModule,
     IonicModule.forRoot(MyApp, {
+      canDisableScroll: false,
       backButtonIcon: 'ios-arrow-dropleft',
       backButtonText: '',
       platforms: {
@@ -128,6 +141,7 @@ let pipes:any[] = [
     SplashScreen,
     Firebase,
     LocalNotifications,
+    Globalization,
     AuthData,
     UserService,
     ActivityService,

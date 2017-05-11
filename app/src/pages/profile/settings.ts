@@ -26,6 +26,7 @@ export class SettingsPage {
   currentUsername: string;
   currentEmail: string;
   currentGuestOn: string;
+  currentPrefLang: string;
   currentNewPassword: string = "";
   currentCurrentPassword: string = "";
   settingsUpdated: string = "";
@@ -51,6 +52,7 @@ export class SettingsPage {
         username: ['', Validators.compose([Validators.minLength(2), 
         Validators.required])],
         guestOn: ['', Validators.required],
+        prefLang: ['', Validators.required],
         currentPassword: ['', Validators.compose([Validators.minLength(6), 
         Validators.required])],
     });
@@ -73,6 +75,7 @@ export class SettingsPage {
   getUserInfo() {
     this.currentUsername = this.userService.getUsername(this.authData.fireAuth.uid, this.users);
     this.currentGuestOn = this.userService.getGuestOn(this.authData.fireAuth.uid, this.users);
+    this.currentPrefLang = this.userService.getLanguage(this.authData.fireAuth.uid, this.users);
   }
 
   updateUserInfo(){
@@ -86,7 +89,7 @@ export class SettingsPage {
       this.authData.reauthenticate(this.currentCurrentPassword).then(() => {
         console.log("re-reauthenticated");
         this.authData.updateEmail(this.currentEmail).then(() => {
-          this.userService.updateUserInfo(this.authData.fireAuth.uid, this.currentUsername, this.currentEmail, this.currentGuestOn);
+          this.userService.updateUserInfo(this.authData.fireAuth.uid, this.currentUsername, this.currentEmail, this.currentGuestOn, this.currentPrefLang);
         });
 
         if (this.currentNewPassword && this.currentNewPassword != "") {
