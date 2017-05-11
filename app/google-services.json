@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "761576838574",
+    "firebase_url": "https://hscamping-9c323.firebaseio.com",
+    "project_id": "hscamping-9c323",
+    "storage_bucket": "hscamping-9c323.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761576838574:android:985143e5ab45e261",
+        "android_client_info": {
+          "package_name": "com.ionicframework.hscamping595064"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761576838574-oenadhp14jvbbpb3uhoebs9s571uao3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG5-TUvunP1LgSPB9ItBZn5Jufe7LSSrk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

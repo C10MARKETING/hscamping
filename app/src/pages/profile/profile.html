@@ -1,0 +1,36 @@
+<ion-header>
+  <page-nav-header [showSettingsButton]=isLoggedIn [showGoToLoginButton]=!isLoggedIn></page-nav-header>
+</ion-header>
+
+<ion-content padding>
+
+  <h2 class="page-title">{{'PROFILE_TITLE' | translate}}</h2>
+
+  <div class="infobox">
+    <p><ion-icon name="checkmark"></ion-icon>{{'PROFILE_INFOBOX_SIGNEDUP' | translate}}</p>
+    <p><ion-icon name="star"></ion-icon>{{'PROFILE_INFOBOX_INTERESTED' | translate}}</p>
+  </div>
+
+  <p class="subheader">{{'PROFILE_SUBHEADER' | translate}}</p>
+
+  <div *ngFor="let date of dates | sortByDate" style="margin-bottom:25px;">
+  
+    <p style="margin-bottom: 8px;">{{date | localizeDate}}</p>
+
+    <ion-list>
+      <div *ngFor="let item of getActivities(date) | sortByStartTime:true">
+        <button ion-item class="list-item" (click)="openItem(item.activity.$key)">
+          <ion-thumbnail class="thumbnail" item-left>
+            <img [src]="item.activity.pic"/>
+          </ion-thumbnail>
+          <h2 class="title">{{item.activity.title[translate.currentLang]}}</h2>
+          <p class="description">{{item.activity.startTimeInMinutes | minutesToTimeOfDay}} - {{item.activity.endTimeInMinutes | minutesToTimeOfDay}}</p>
+          <ion-icon *ngIf="item.subscribed" name="checkmark-circle" item-right></ion-icon><ion-icon *ngIf="!item.subscribed" name="star" item-right></ion-icon>
+        </button>
+        <p *ngIf="!item.subscribed" style="margin-bottom:10px;margin-top:-7px;">{{ 'PROFILE_CLICK_TO_SIGNUP' | translate }}</p>
+      </div>
+    </ion-list>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,31 @@
+page-activities-filter {
+
+    .item {
+      background-color: color($colors, secondary);
+
+      ion-radio .radio-checked {
+        border-color: #000;
+      }
+
+      ion-radio .radio-inner {
+        background-color: #000;
+      }
+    }
+
+    .item-radio-checked ion-label  {
+      color: #000 !important;
+      font-weight: bold;
+    }
+
+    .button {
+      color: color($colors, text);
+      font-weight: bold;
+      border: 1px solid color($colors, edge);
+      background-color: color($colors, secondary);
+      box-shadow: none;
+      height: 4rem;
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
+
+}

@@ -1,0 +1,66 @@
+page-get-started {
+
+    //preloading bg images
+    ::after{
+        position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+        content: url('../assets/img/getStarted2.png') url('../assets/img/getStarted3.png');
+    }
+
+    ion-slide{
+        width: 100%;
+        padding: 0 0;
+    }
+
+    .swiper-slide {
+      justify-content: flex-start;
+      flex-direction: column;
+      padding-top: 170px;
+    }
+
+    .swiper-container-horizontal > .swiper-pagination {
+        bottom: 60px;
+    }
+
+    .swiper-pagination-bullet {
+        background: #fff;
+    }
+
+    .getStarted1{
+        @include home-bg('../assets/img/getStarted2.png');
+    }
+
+    .getStarted2{
+        @include home-bg('../assets/img/getStarted3.png');
+    }
+
+    .pagination-after{
+        color: #fff;
+        position: absolute;
+        bottom: 30px;
+        z-index: 10;
+        width: 100%;
+        text-align: center;
+    }
+
+    .info-list{
+        width: 80%;
+
+        ion-row{
+            margin: 10px 0;
+        }
+
+        ion-col:first-child {
+            font-size: 1.3em;
+            text-align: right;
+        }
+
+        ion-col:last-child {
+            text-align: left;
+            font-size: 0.9em;
+        }
+    }
+
+    h2 {
+      padding: 0 20px;
+    }
+}

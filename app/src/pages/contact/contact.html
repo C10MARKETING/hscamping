@@ -1,0 +1,11 @@
+<ion-header>
+  <page-nav-header></page-nav-header>
+</ion-header>
+
+<ion-content padding>
+  <h2 class="page-title">{{'CONTACT_TITLE' | translate}}</h2>
+  <div *ngIf="contact">
+    <div style="white-space:pre-wrap;">{{contact.info}}</div>
+  </div>
+
+</ion-content>

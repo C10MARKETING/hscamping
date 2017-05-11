@@ -1,0 +1,29 @@
+<ion-navbar color="chrome">
+
+  <img (click)="goToHome()" class="logo" src="assets/img/logo-topbar.png"/>
+
+<!--  <ion-buttons *ngIf="!navCtrl.canGoBack()" style="padding: 0 5px">
+    <button (click)="goToHome()" ion-button icon-only>
+      <ion-icon style="margin: 0 6px;font-size: 3.5rem;" ios="ios-arrow-dropleft" md="ios-arrow-dropleft"></ion-icon>
+    </button>
+  </ion-buttons>-->
+
+  <ion-buttons end *ngIf="showActivitesFilterButton">
+    <button [navPush]="activitiesFilterPage" ion-button icon-only>
+      <ion-icon ios="md-funnel" md="md-funnel"></ion-icon>
+    </button>
+  </ion-buttons>
+
+  <ion-buttons end *ngIf="showSettingsButton">
+    <button [navPush]="settingsPage" ion-button icon-only>
+      <ion-icon name="settings"></ion-icon>
+    </button>
+  </ion-buttons>
+
+  <ion-buttons end *ngIf="showGoToLoginButton">
+    <button (click)="goToLogin()" ion-button icon-only>
+      <ion-icon name="home"></ion-icon>
+    </button>
+  </ion-buttons>
+
+</ion-navbar>

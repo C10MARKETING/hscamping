@@ -1,0 +1,62 @@
+page-search {
+    .title {
+        text-align: center;
+    }
+
+    .searchbar {
+
+        padding: 0;
+
+        .searchbar-input {
+            box-shadow: none;
+            border: 1px solid color($colors, edge);
+            background-color: color($colors, secondary);
+
+            &::-webkit-input-placeholder{
+                color: color($colors, tertiary);
+                font-style: italic;
+            }
+        }
+    }
+
+    .ui-calendar, .ui-datepicker {
+        width: 100%;
+
+        tr {
+            height: 40px;
+        }
+
+        th, td, td a {
+            background-color: color($colors, secondary) !important;
+            border-bottom: 0 !important;
+        }
+
+        td.ui-datepicker-other-month, .ui-datepicker-other-month a {
+            background-color: color($colors, secondary) !important;
+            opacity: 1;
+        }
+
+        .ui-datepicker-header {
+            border: 0;
+            background: color($colors, tertiary);
+            color: color($colors, light);
+
+            a {
+                color: color($colors, light);
+
+                &:hover {
+                    color: color($colors, light);
+                    background: transparent;
+                }
+            }
+        }
+
+        .ui-state-highlight {
+            color: color($colors, light) !important;
+        }
+        .ui-state-active {
+            color: color($colors, text) !important;
+            background-color: color($colors, light) !important;
+        }
+    }
+}

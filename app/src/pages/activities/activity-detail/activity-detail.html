@@ -1,0 +1,44 @@
+<ion-header>
+  <page-nav-header [showActivitesFilterButton]="true"></page-nav-header>
+</ion-header>
+
+
+<ion-content *ngIf="activity">
+  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + activity.pic + ')'">
+  </div>
+
+  <div class="item-detail" padding>
+    <div class="headers">
+      <h2>{{activity.title[translate.currentLang]}}</h2>
+      <p>{{activity.about[translate.currentLang]}}</p>
+    </div>
+
+    <div class="item-list">
+      <div class="item-list-header">{{'ACTIVITY_DETAIL_TIMEOFDAY' | translate}}</div>
+      <div class="item-list-body">{{activity.date | localizeDate}}, {{activity.startTimeInMinutes | minutesToTimeOfDay}} - {{activity.endTimeInMinutes | minutesToTimeOfDay}}</div>
+      <div class="item-list-header">{{'ACTIVITY_DETAIL_LOCATION' | translate}}</div>
+      <div class="item-list-body">{{activity.location[translate.currentLang]}}</div>
+      <div class="item-list-header" *ngIf="activity.price !== 0 || activity.priceCategory === 'freeForAll'">{{'ACTIVITY_DETAIL_PRICE' | translate}}</div>
+      <div class="item-list-body" *ngIf="activity.price !== 0 || activity.priceCategory === 'freeForAll'">
+        <span *ngIf="activity.priceCategory !== 'freeForAll'">{{activity.price}} DKK
+          <span *ngIf="activity.priceCategory === 'freeWithPackage'"> ({{'ACTIVITY_DETAIL_FREE_WITH_PACKAGE' | translate}})</span>
+        </span>
+        <span *ngIf="activity.priceCategory === 'freeForAll'">{{'ACTIVITY_DETAIL_PRICE_FREE' | translate}}</span>
+      </div>
+    </div>
+
+    <button [ngClass]="{'signedUp': isSignedUp()}" ion-button full icon-left (click)="signup()"><ion-icon *ngIf="!isSignedUp()" name="checkmark"></ion-icon><ion-icon *ngIf="isSignedUp()" name="checkmark-circle"></ion-icon>{{'ACTIVITY_DETAIL_SIGNUP' | translate}}</button>
+    <button [ngClass]="{'interestedIn': isInterestedIn()}"ion-button full icon-left (click)="interested()"><ion-icon *ngIf="!isInterestedIn()" name="star-outline"></ion-icon><ion-icon *ngIf="isInterestedIn()" name="star"></ion-icon>{{'ACTIVITY_DETAIL_INTERESTED' | translate}}</button>
+
+    <div class="item-list">
+        <div class="item-list-header">{{'ACTIVITY_DETAIL_INFO' | translate}}</div>
+        <div class="item-list-body" style="white-space:pre-wrap;">{{activity.info[translate.currentLang]}}</div>
+        <div class="item-list-header">{{'ACTIVITY_DETAIL_ORGANISER' | translate}}</div>
+        <div class="item-list-body">{{activity.organiser}}</div>
+
+        <div class="item-list-header">{{'ACTIVITY_DETAIL_PARTICIPANTS' | translate}}</div>
+        <div class="item-list-body"><div *ngFor="let participant of participantNames | sort"><span [ngClass]="{'thisUser': isThisUser(participant)}">{{participant}}</span></div></div>
+    </div>
+
+  </div>
+</ion-content>

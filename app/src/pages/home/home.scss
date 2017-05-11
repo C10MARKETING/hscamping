@@ -1,0 +1,41 @@
+page-home {
+    text-align: center;
+    .scroll-content{
+        padding-top: 180px;
+    }
+
+    .whats-happening div {
+        @extend .image-background;
+        color: #fff;
+        border-top: 1px solid #fff;
+        height: 170px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        &:last-child {
+            border-bottom: 1px solid #fff;
+        }
+
+        .icon {
+            padding-top: 10px;
+            font-size: 2.5em;
+        }
+    }
+
+    .spinner {
+        border: 3px solid #ACC6C7;
+        border-top: 3px solid transparent;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1.5s linear infinite;
+        margin: 50px auto;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+}

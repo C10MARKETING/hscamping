@@ -1,0 +1,36 @@
+<ion-content padding class="home-container">
+    <img class="logo" src="assets/img/logo.png"/>
+
+    <button class="back" (click)="goBack()" ion-button icon-only>
+        <ion-icon name="arrow-back"></ion-icon>
+    </button>
+
+    <div class="login">
+        <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+            <ion-input #name formControlName="name" type="text" (change)="elementChanged(name)" placeholder="{{'SIGNUP_PLACEHOLDER_NAME' | translate}}" [class.invalid]="!signupForm.controls.name.valid && (nameChanged || submitAttempt)"></ion-input>
+            <ion-item class="error-message" *ngIf="!signupForm.controls.name.valid && (nameChanged || submitAttempt)">
+                <p>{{'SIGNUP_INVALID_NAME' | translate}}</p>
+            </ion-item>
+            <ion-input #email formControlName="email" type="email" (change)="elementChanged(email)" placeholder="E-mail" [class.invalid]="!signupForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
+            <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid && (emailChanged || submitAttempt)">
+                <p>{{'SIGNUP_INVALID_EMAIL' | translate}}</p>
+            </ion-item>
+            <ion-input #password formControlName="password" type="password" (change)="elementChanged(password)" placeholder="Password" [class.invalid]="!signupForm.controls.password.valid && (passwordChanged || submitAttempt)"></ion-input>
+            <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid && (passwordChanged || submitAttempt)">
+                <p>{{'SIGNUP_INVALID_PASSWORD' | translate}}</p>
+            </ion-item>
+            <p>{{'SIGNUP_GUEST_ON' | translate}}</p>
+            <ion-list #guestOn formControlName="guestOn" radio-group [(ngModel)]="currentGuestOn">
+                <ion-item>
+                    <ion-label>{{'SIGNUP_GUEST_ON_CAMPING' | translate}}</ion-label>
+                    <ion-radio value="camping"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'SIGNUP_GUEST_ON_PARTNER' | translate}}</ion-label>
+                    <ion-radio value="partner"></ion-radio>
+                </ion-item>
+            </ion-list>
+            <button ion-button full type="submit">{{'SIGNUP_CREATE_ACCOUNT' | translate}}</button>
+        </form>
+    </div>
+</ion-content>

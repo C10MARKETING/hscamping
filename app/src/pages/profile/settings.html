@@ -1,0 +1,47 @@
+<ion-header>
+  <page-nav-header></page-nav-header>
+</ion-header>
+
+<ion-content padding>
+  <h2 class="page-title">{{'SETTINGS_TITLE' | translate}}</h2>
+
+  <div class="login">
+      <form [formGroup]="settingsForm" (submit)="updateUserInfo()" novalidate>
+          <p>{{'SETTINGS_NAME' | translate}}</p>
+          <ion-input #username formControlName="username" type="text" (change)="elementChanged(username)" placeholder="{{'SIGNUP_PLACEHOLDER_NAME' | translate}}" [(ngModel)]="currentUsername" [class.invalid]="!settingsForm.controls.username.valid && (usernameChanged || submitAttempt)"></ion-input>
+          <ion-item class="error-message" *ngIf="!settingsForm.controls.username.valid && (usernameChanged || submitAttempt)">
+              <p>{{'SIGNUP_INVALID_NAME' | translate}}</p>
+          </ion-item>
+          <p>{{'SETTINGS_EMAIL' | translate}}</p>
+          <ion-input #email formControlName="email" type="email" (change)="elementChanged(email)" placeholder="E-mail" [(ngModel)]="currentEmail" [class.invalid]="!settingsForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
+          <ion-item class="error-message" *ngIf="!settingsForm.controls.email.valid && (emailChanged || submitAttempt)">
+              <p>{{'SIGNUP_INVALID_EMAIL' | translate}}</p>
+          </ion-item>
+          <p>{{'SETTINGS_NEWPASSWORD' | translate}}</p>
+          <ion-input #newPassword formControlName="newPassword" type="password" (change)="elementChanged(newPassword)" placeholder="Password" [(ngModel)]="currentNewPassword" [class.invalid]="!settingsForm.controls.newPassword.valid && (newPasswordChanged || submitAttempt)"></ion-input>
+          <ion-item class="error-message" *ngIf="!settingsForm.controls.newPassword.valid && (newPasswordChanged || submitAttempt)">
+              <p>{{'SIGNUP_INVALID_PASSWORD' | translate}}</p>
+          </ion-item>
+          <p>{{'SIGNUP_GUEST_ON' | translate}}</p>
+          <ion-list #guestOn formControlName="guestOn" radio-group [(ngModel)]="currentGuestOn">
+              <ion-item>
+                  <ion-label>{{'SIGNUP_GUEST_ON_CAMPING' | translate}}</ion-label>
+                  <ion-radio value="camping"></ion-radio>
+              </ion-item>
+              <ion-item>
+                  <ion-label>{{'SIGNUP_GUEST_ON_PARTNER' | translate}}</ion-label>
+                  <ion-radio value="partner"></ion-radio>
+              </ion-item>
+          </ion-list>
+          <p>{{'SETTINGS_CURRENTPASSWORD' | translate}}</p>
+          <ion-input #currentPassword formControlName="currentPassword" type="password" (change)="elementChanged(currentPassword)" placeholder="Password" [(ngModel)]="currentCurrentPassword" [class.invalid]="!settingsForm.controls.currentPassword.valid && (currentPasswordChanged || submitAttempt)"></ion-input>
+          <ion-item class="error-message" *ngIf="!settingsForm.controls.currentPassword.valid && (currentPasswordChanged || submitAttempt)">
+              <p>{{'SETTINGS_INVALID_CURRENT_PASSWORD' | translate}}</p>
+          </ion-item>
+
+          <button ion-button full icon-left type="submit"><ion-icon name="checkmark"></ion-icon>{{'SETTINGS_SAVE_INFO' | translate}}</button>
+      </form>
+  </div>
+
+  <button ion-button full icon-left (click)="logoutUser()"><ion-icon name="exit"></ion-icon>{{'SETTINGS_LOGOUT' | translate}}</button>
+</ion-content>

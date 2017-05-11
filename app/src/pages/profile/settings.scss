@@ -1,0 +1,33 @@
+page-settings {
+
+    .input {
+        border: 1px solid color($colors, edge);
+        background-color: color($colors, secondary);
+    }
+
+    .item {
+        background-color: transparent;
+    }
+
+    .button {
+        color: color($colors, text);
+        font-weight: bold;
+        border: 1px solid color($colors, edge);
+        background-color: color($colors, secondary);
+        box-shadow: none;
+        padding-left: 15%;
+        height: 4rem;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        .button-inner{
+            justify-content:flex-start;
+        }
+
+        .icon {
+            line-height: inherit;
+        }
+
+    }
+
+}

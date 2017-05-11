@@ -1,0 +1,66 @@
+page-profile {
+
+    .infobox {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+
+        .icon {
+            font-size: inherit;
+        }
+
+        p {
+            margin: 5px;
+        }
+    }
+    .subheader {
+        text-align: center;
+    }
+
+    //All of the below styles are copied from ACTIVITIESPAGE and should be moved to their own component
+    .list-item {
+        padding: 0;
+        background-color: color($colors, secondary);
+        margin-bottom: 10px;
+        border: 1px solid color($colors, edge);
+    }
+
+    .item-inner {
+        border-bottom: none!important;
+        padding-right: 0!important;
+    }
+
+    .icon{
+        font-size: 3.5rem;
+    }
+
+    .thumbnail[item-left] {
+        margin: 0;
+        min-width: 60px;
+        min-height: 60px;
+
+        img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    .icon[item-right] {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .label {
+        margin: 8px;
+    }
+
+    .title {
+        font-weight: bold;
+        margin-top: 0!important;
+    }
+
+    .description, .title {
+        font-size: 1.3rem;
+        color: color($colors, text);
+    }
+}

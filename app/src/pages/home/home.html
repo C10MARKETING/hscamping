@@ -1,0 +1,16 @@
+<ion-content class="home-container">
+
+  <img class="logo" src="assets/img/logo.png"/>
+
+  <div *ngIf="!whatsHappening" class="spinner"></div>
+
+  <div class="whats-happening">
+    
+    <div *ngFor="let item of whatsHappening" (click)="openItem(item.$key)" [style.background-image]="'url(' + item.pic + ')'">
+      <h2>{{item.title[translate.currentLang]}}</h2>
+      <span>{{item.about[translate.currentLang]}}</span>
+      <ion-icon color="secondary" [navPush]="activitiesFilterPage" ios="ios-arrow-dropright" md="ios-arrow-dropright"></ion-icon>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,78 @@
+page-activity-detail {
+  .item-profile {
+    width: 100%;
+    background-position: center center;
+    background-size: cover;
+    height: 150px;
+  }
+
+  .item-detail {
+    width: 100%;
+    position: absolute;
+  }
+
+  .headers {
+    text-align: center;
+    h2 {
+      margin-bottom: 5px;
+    }
+    p {
+      margin-top: 3px;
+    }
+  }
+
+  .item-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    line-height: 1.3;
+
+    .item-list-header, .item-list-body {
+      padding: 5px;
+    }
+
+    .item-list-header {
+      width: 28%;
+      font-weight: bold;
+    }
+
+    .item-list-body{
+      width: 72%;
+    }
+  }
+
+  .button{
+    color: color($colors, text);
+    font-weight: bold;
+    border: 1px solid color($colors, edge);
+    background-color: color($colors, secondary);
+    box-shadow: none;
+    padding-left: 15%;
+    height: 4rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    .button-inner{
+      justify-content:flex-start;
+    }
+
+    .icon {
+      line-height: inherit;
+    }
+  }
+
+  .button.activated {
+    background-color: color($colors, edge);
+  }
+
+  .signedUp {
+    background-color: #c1dbc2;
+  }
+
+  .interestedIn {
+    background-color: #dbdbc1;
+  }
+  .thisUser {
+    font-weight: bold;
+  }
+}

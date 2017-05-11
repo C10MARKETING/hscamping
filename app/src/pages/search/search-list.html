@@ -1,0 +1,34 @@
+<ion-header>
+  <page-nav-header></page-nav-header>
+</ion-header>
+
+<ion-content padding>
+  <h2 class="page-title">{{'ACTIVITIES_TITLE' | translate}}</h2>
+
+  <p class="subheader" *ngIf="activityService.searchObject && activityService.searchObject.searchMode == 'string'">{{'SEARCH_SEARCH' | translate}} {{currentSearch}}</p>
+
+  <div *ngIf="dates.length == 0">
+    <p class="subheader" style="margin-bottom: 8px;" *ngIf="activityService.searchObject && activityService.searchObject.searchMode == 'date'">{{'SEARCH_SEARCH' | translate}} {{currentSearch | localizeDate}}</p>
+
+    <p class="subheader">{{noDates}}</p>
+  </div>
+
+  <div *ngFor="let date of dates | sortByDate" style="margin-bottom:25px;">
+
+    <p *ngIf="activityService.searchObject && activityService.searchObject.searchMode == 'date'" class="subheader" style="margin-bottom: 8px;">{{'SEARCH_SEARCH' | translate}} {{date | localizeDate}}</p>
+    <p style="margin-bottom: 8px;">{{date | localizeDate}}</p>
+
+    <ion-list>
+      <button ion-item class="list-item" *ngFor="let item of getActivities(date) | sortByStartTime" (click)="openItem(item.$key)">
+        <ion-thumbnail class="thumbnail" item-left>
+          <img [src]="item.pic"/>
+        </ion-thumbnail>
+        <h2 class="title">{{item.title[translate.currentLang]}}</h2>
+        <p class="description">{{item.startTimeInMinutes | minutesToTimeOfDay}} - {{item.endTimeInMinutes | minutesToTimeOfDay}}</p>
+        <ion-icon ios="ios-arrow-dropright" md="ios-arrow-dropright" color="light" item-right></ion-icon>
+      </button>
+    </ion-list>
+
+  </div>
+  
+</ion-content>

@@ -1,0 +1,15 @@
+<ion-header>
+  <page-nav-header></page-nav-header>
+</ion-header>
+
+<ion-content padding>
+  <h2 class="page-title">{{'SEARCH_TITLE' | translate}}</h2>
+
+  <ion-searchbar placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}" (search)="search($event)"></ion-searchbar>
+
+  <h2 class="title">{{'SEARCH_CALENDAR' | translate}}</h2>
+
+  <p-calendar [(ngModel)]="selectedDate" (onSelect)="showDate()" [inline]="true" [locale]="lang" [showOtherMonths]="false"></p-calendar>
+
+
+</ion-content>

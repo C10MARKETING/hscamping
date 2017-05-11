@@ -1,0 +1,21 @@
+<ion-content padding class="home-container">
+    <img class="logo" src="assets/img/logo.png"/>
+
+    <div class="login">
+        <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+            <ion-input #email formControlName="email" type="email" (change)="elementChanged(email)" placeholder="E-mail" [class.invalid]="!loginForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
+            <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid && (emailChanged || submitAttempt)">
+                <p>{{'LOGIN_INVALID_EMAIL' | translate}}</p>
+            </ion-item>
+            <ion-input #password formControlName="password" type="password" (change)="elementChanged(password)" placeholder="Password" [class.invalid]="!loginForm.controls.password.valid && (passwordChanged || submitAttempt)"></ion-input>
+            <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid && (passwordChanged || submitAttempt)">
+                <p>{{'LOGIN_INVALID_PASSWORD' | translate}}</p>
+            </ion-item>
+            <button ion-button full type="submit">{{'LOGIN_LOGIN' | translate}}</button>
+            <p (click)="goToResetPassword()" style="text-decoration:underline;">{{'LOGIN_FORGOTLOGIN' | translate}}</p>
+
+            <button ion-button full (click)="createAccount()">{{'LOGIN_CREATEUSER' | translate}}</button>
+            <p (click)="logInAnonymously()" style="text-decoration:underline;">{{'LOGIN_PREVIEW' | translate}}</p>
+        </form>
+    </div>
+</ion-content>

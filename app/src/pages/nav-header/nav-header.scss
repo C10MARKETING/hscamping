@@ -1,0 +1,25 @@
+page-nav-header {
+
+    .logo
+    {
+        position: absolute;
+        top: 13px;
+        left: 50%;
+        width: 110px;
+        margin-left: -55px;
+        z-index: 1;
+    }
+
+    .toolbar
+    {
+        overflow: visible;
+        contain: layout style;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    .back-button-icon{
+        font-size: 3.5rem;
+    }
+
+}

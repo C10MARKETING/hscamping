@@ -1,0 +1,34 @@
+<ion-content class="home-container" [ngClass]="getContainerClass()">
+  <img class="logo" src="assets/img/logo.png"/>
+  <ion-slides #getStartedSlider (ionSlideWillChange)="onSlideWillChange()" pager>
+    <ion-slide>
+      <h2>{{'GETSTARTED1_TITLE' | translate}}</h2>
+    </ion-slide>
+    <ion-slide>
+      <h2>{{'GETSTARTED2_TITLE' | translate}}</h2>
+      <ion-grid class="info-list">
+        <ion-row center>
+          <ion-col col-auto><ion-icon name="bicycle"></ion-icon></ion-col><ion-col>{{'GETSTARTED2_INFO1' | translate}}</ion-col>
+        </ion-row>
+        <ion-row center>
+          <ion-col col-auto><ion-icon name="search"></ion-icon></ion-col><ion-col>{{'GETSTARTED2_INFO2' | translate}}</ion-col>
+        </ion-row>
+        <ion-row center>
+          <ion-col col-auto><ion-icon name="star"></ion-icon></ion-col><ion-col>{{'GETSTARTED2_INFO3' | translate}}</ion-col>
+        </ion-row>
+        <ion-row center>
+          <ion-col col-auto><ion-icon name="checkmark"></ion-icon></ion-col><ion-col>{{'GETSTARTED2_INFO4' | translate}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide (click)="leaveGetStartedPage()">
+      <h2>{{'GETSTARTED3_TITLE' | translate}}</h2>
+      <ion-grid class="info-list">
+        <ion-row center>
+          <ion-col col-auto><ion-icon name="man"></ion-icon></ion-col><ion-col>{{'GETSTARTED3_INFO1' | translate}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+  <div (click)="leaveGetStartedPage()" class="pagination-after">{{paginationAfter}}</div>
+</ion-content>

@@ -1,0 +1,87 @@
+<ion-header>
+  <page-nav-header></page-nav-header>
+</ion-header>
+
+<ion-content padding>
+  <h2 class="page-title">{{'ACTIVITIES_FILTER_TITLE' | translate}}</h2>
+
+    <span><b>{{'ACTIVITIES_FILTER_WHO' | translate}}</b></span>
+    <ion-list radio-group [(ngModel)]="currentFilterObject.who">
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_ALL' | translate}}</ion-label>
+            <ion-radio value="" [color]="activeIcon"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_WHO_CHILDREN' | translate}}</ion-label>
+            <ion-radio value="children"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_WHO_ADULTS' | translate}}</ion-label>
+            <ion-radio value="adults"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_WHO_FAMILY' | translate}}</ion-label>
+            <ion-radio value="family"></ion-radio>
+        </ion-item>
+    </ion-list>
+
+    <span><b>{{'ACTIVITIES_FILTER_WHERE' | translate}}</b></span>
+    <ion-list radio-group [(ngModel)]="currentFilterObject.where">
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_ALL' | translate}}</ion-label>
+            <ion-radio value=""></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_WHERE_INDOORS' | translate}}</ion-label>
+            <ion-radio value="indoors"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_WHERE_OUTDOORS' | translate}}</ion-label>
+            <ion-radio value="outdoors"></ion-radio>
+        </ion-item>
+    </ion-list>
+
+    <span><b>{{'ACTIVITIES_FILTER_WHAT' | translate}}</b></span>
+    <ion-list radio-group [(ngModel)]="currentFilterObject.what">
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_ALL' | translate}}</ion-label>
+            <ion-radio value=""></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_WHAT_SPORT' | translate}}</ion-label>
+            <ion-radio value="sport"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_WHAT_NATURE' | translate}}</ion-label>
+            <ion-radio value="nature"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_WHAT_CREATIVE' | translate}}</ion-label>
+            <ion-radio value="creative"></ion-radio>
+        </ion-item>
+    </ion-list>
+
+    <span><b>{{'ACTIVITIES_FILTER_PRICE' | translate}}</b></span>
+    <ion-list radio-group [(ngModel)]="currentFilterObject.priceCategory">
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_ALL' | translate}}</ion-label>
+            <ion-radio value=""></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_PRICE_FREE_WITH_PACKAGE' | translate}}</ion-label>
+            <ion-radio value="freeWithPackage"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_PRICE_PAYING' | translate}}</ion-label>
+            <ion-radio value="paying"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'ACTIVITIES_FILTER_PRICE_FREE_FOR_ALL' | translate}}</ion-label>
+            <ion-radio value="freeForAll"></ion-radio>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button full (click)="reset()">{{'ACTIVITIES_FILTER_RESET' | translate}}</button>
+    <button ion-button full (click)="update()">{{'ACTIVITIES_FILTER_UPDATE' | translate}}</button>
+
+</ion-content>
