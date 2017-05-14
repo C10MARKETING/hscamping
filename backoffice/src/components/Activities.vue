@@ -509,10 +509,13 @@ Ikke logget ind
             </tr>-->
             <tr>
                 <td>
-                    Kontakt info
+                  <select v-model="contactInputLanguage.about" class="lang-dropdown">
+                      <option value="da">Kontakt info (dansk)</option>
+                      <option value="de">Kontakt info (tysk)</option>
+                  </select>
                 </td>
                 <td>
-                    <textarea rows="8" cols="40" v-model="contact.info"></textarea>
+                    <textarea rows="10" cols="60" v-model="contact.about[contactInputLanguage.about]"></textarea>
                 </td>
             </tr>
             <tr>
@@ -641,7 +644,7 @@ export default {
       activeSeries: null,
       inputLanguage: null,
       signupNotesInputLanguage: null,
-/*      contactInputLanguage: null, */
+      contactInputLanguage: null,
       showTooManyParticipants: false,
       newActivity: null,
       submittable: false,
@@ -1191,8 +1194,8 @@ export default {
     },
     updateContact () {
       var updates = {
-/*        about: this.contact.about, */
-        info: this.contact.info
+        about: this.contact.about
+        /* info: this.contact.info */
       }
 
       contactRef.update(updates).then(() => {
