@@ -16,23 +16,27 @@ export class NotificationsService {
 
     if (platform.is('cordova')) {
 
-      LocalNotifications.on('click', (event) => {
-        console.log(event)
-        let data = JSON.parse(event.data)
-        this.openItem(data.aid) 
-      });
+      this.LocalNotifications.registerPermission().then(() => {
 
-      LocalNotifications.on('trigger', function (notification) {
-        console.log(notification);
-        //to handle notification popup in foreground.
-        let alert = alertCtrl.create({
-            message: notification.title + ". " + notification.text + ".",
-            buttons: [{ text: "Ok", role: 'cancel' } ]
+        LocalNotifications.on('click', (event) => {
+          console.log(event)
+          let data = JSON.parse(event.data)
+          this.openItem(data.aid) 
         });
-        alert.present();
+
+        LocalNotifications.on('trigger', function (notification) {
+          console.log(notification);
+          //to handle notification popup in foreground.
+          let alert = alertCtrl.create({
+              message: notification.title + ". " + notification.text + ".",
+              buttons: [{ text: "Ok", role: 'cancel' } ]
+          });
+          alert.present();
+        });
+        var that = this;
+        setTimeout(function() { that.setupLocalizedText();}, 1000);
+
       });
-      var that = this;
-      setTimeout(function() { that.setupLocalizedText(); }, 1000);
     }
   }
 
@@ -44,17 +48,15 @@ export class NotificationsService {
       value => { this.minutes = value; })
   }
 
-/*  testNotification(){
-      this.LocalNotifications.registerPermission().then(() => {
-        this.LocalNotifications.schedule({
-          id: 1337,
-          at: moment().valueOf() + 1000,
-          title: "davs",
-          text: "tekst: " + this.activityIn + " 42 " + this.minutes,
-          data: { aid: 32, startsIn: 33 }
-        });
-      });
-  }*/
+  testNotification(){
+    this.LocalNotifications.schedule({
+      id: 1337,
+      at: moment().valueOf() + 1000,
+      title: "davs",
+      text: "tekst: " + this.activityIn + " 42 " + this.minutes,
+      data: { aid: 32, startsIn: 33 }
+    });
+  }
 
   deleteNotification(activity) {
     if (!this.platform.is('cordova')) return;
