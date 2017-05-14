@@ -5,7 +5,7 @@
 <ion-content padding>
   <h2 class="page-title">{{'CONTACT_TITLE' | translate}}</h2>
   <div *ngIf="contact">
-    <div style="white-space:pre-wrap;">{{contact.info}}</div>
+    <div style="white-space:pre-wrap;">{{contact.about[translate.currentLang]}}</div>
   </div>
 
 </ion-content>
