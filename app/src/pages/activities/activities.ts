@@ -43,6 +43,10 @@ export class ActivitiesPage {
     if (this.activityService.shouldUpdateActivityList) {
       this.reloadActivityList();
       this.activityService.shouldUpdateActivityList = false;
+      if (this.currentSub != null) {
+        this.currentSub.unsubscribe();
+        this.isSubscribed = false;
+      }
     }
 
     var that = this;
