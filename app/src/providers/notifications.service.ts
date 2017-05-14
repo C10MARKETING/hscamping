@@ -9,20 +9,12 @@ import * as moment from 'moment'
 @Injectable()
 export class NotificationsService {
 
-  activityIn: string;
-  minutes: string;
+  activityIn: string = "Aktivitet starter om";
+  minutes: string = "minutter";
 
   constructor(private translate: TranslateService, private app: App, private LocalNotifications: LocalNotifications, private platform: Platform, private alertCtrl: AlertController) {
 
-    this.translate.get('NOTIFICATIONS_ACTIVITYSTARTSIN').subscribe(
-      value => { this.activityIn = value; })
-
-    this.translate.get('NOTIFICATIONS_MINUTES').subscribe(
-      value => { this.minutes = value; })
-
     if (platform.is('cordova')) {
-
-      LocalNotifications.registerPermission();
 
       LocalNotifications.on('click', (event) => {
         console.log(event)
@@ -30,7 +22,7 @@ export class NotificationsService {
         this.openItem(data.aid) 
       });
 
-/*      LocalNotifications.on('trigger', function (notification) {
+      LocalNotifications.on('trigger', function (notification) {
         console.log(notification);
         //to handle notification popup in foreground.
         let alert = alertCtrl.create({
@@ -39,16 +31,30 @@ export class NotificationsService {
         });
         alert.present();
       });
-
-      LocalNotifications.schedule({
-        id: 1337,
-        at: moment().valueOf() + 2000,
-        title: "davs",
-        text: "tekst",
-        data: { aid: 32, startsIn: 33 }
-      });*/
+      var that = this;
+      setTimeout(function() { that.setupLocalizedText(); }, 1000);
     }
   }
+
+  setupLocalizedText(){
+    this.translate.get('NOTIFICATIONS_ACTIVITYSTARTSIN').subscribe(
+      value => { this.activityIn = value; })
+
+    this.translate.get('NOTIFICATIONS_MINUTES').subscribe(
+      value => { this.minutes = value; })
+  }
+
+/*  testNotification(){
+      this.LocalNotifications.registerPermission().then(() => {
+        this.LocalNotifications.schedule({
+          id: 1337,
+          at: moment().valueOf() + 1000,
+          title: "davs",
+          text: "tekst: " + this.activityIn + " 42 " + this.minutes,
+          data: { aid: 32, startsIn: 33 }
+        });
+      });
+  }*/
 
   deleteNotification(activity) {
     if (!this.platform.is('cordova')) return;
