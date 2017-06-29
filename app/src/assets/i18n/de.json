@@ -37,6 +37,7 @@
   "SIGNUP_GUEST_ON": "Ich bin als Gast gemeldet bei:",
   "SIGNUP_GUEST_ON_CAMPING": "Henne Strand Camping",
   "SIGNUP_GUEST_ON_PARTNER": "Feriepartner Henne Strand",
+  "SIGNUP_GUEST_ON_EVERYONE": "Keiner von obengenannten",
   "SIGNUP_ERROR": "Fehlermeldung bei Erstellung des Benutzerkontos.",
   "SIGNUP_PREFERRED_LANGUAGE": "Bevorzugte Sprache", 
 
@@ -77,6 +78,7 @@
   "ACTIVITY_DETAIL_FREE_WITH_PACKAGE": "Gratis mit Aktivitätspaket",
   "ACTIVITY_DETAIL_INFO": "Info",
   "ACTIVITY_DETAIL_ORGANISER": "Veranstalter",
+  "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS": "Teilnehmergrenze",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED": "Zur Zeit keine freien Plätze",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED_MAX": "max",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED_PARTICIPANTS": "Teilnehmer",
@@ -85,7 +87,9 @@
   "ACTIVITY_DETAIL_LOGIN_CREATE_USER": "Einloggen/Benutzerkonto erstellen",
 
   "ACTIVITY_DETAIL_SIGNUP": "Anmelden",
+  "ACTIVITY_DETAIL_FRAMELD": "Abmelden",
   "ACTIVITY_DETAIL_INTERESTED": "Interessiert",
+  "ACTIVITY_DETAIL_NOTINTERESTED": "Kein Interesse",
   "ACTIVITY_DETAIL_PARTICIPANTS": "Teilnehmer",
 
   "SEARCH_TITLE": "Nach Aktivitäten suchen",
