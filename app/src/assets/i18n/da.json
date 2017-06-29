@@ -37,6 +37,7 @@
   "SIGNUP_GUEST_ON": "Jeg er gæst på:",
   "SIGNUP_GUEST_ON_CAMPING": "Henne Strand Camping",
   "SIGNUP_GUEST_ON_PARTNER": "Feriepartner Henne Strand",
+  "SIGNUP_GUEST_ON_EVERYONE": "Ingen af ovennævnte",
   "SIGNUP_ERROR": "Fejl ved oprettelse af bruger.",
   "SIGNUP_PREFERRED_LANGUAGE": "Foretrukne sprog", 
 
@@ -77,6 +78,7 @@
   "ACTIVITY_DETAIL_FREE_WITH_PACKAGE": "gratis med aktivitetspakke",
   "ACTIVITY_DETAIL_INFO": "Info",
   "ACTIVITY_DETAIL_ORGANISER": "Arrangør",
+  "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS": "Maks. deltagere",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED": "Der er p.t. ingen ledige pladser",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED_MAX": "maks",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED_PARTICIPANTS": "deltagere",
@@ -85,7 +87,9 @@
   "ACTIVITY_DETAIL_LOGIN_CREATE_USER": "Login/Opret bruger",
 
   "ACTIVITY_DETAIL_SIGNUP": "Tilmeld",
+  "ACTIVITY_DETAIL_FRAMELD": "Frameld",
   "ACTIVITY_DETAIL_INTERESTED": "Interesseret",
+  "ACTIVITY_DETAIL_NOTINTERESTED": "Ikke interesseret",
   "ACTIVITY_DETAIL_PARTICIPANTS": "Deltagere",
 
   "SEARCH_TITLE": "Søg efter aktivitet",
