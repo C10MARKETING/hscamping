@@ -31,13 +31,16 @@
     <button [ngClass]="{'interestedIn': isInterestedIn()}"ion-button full icon-left (click)="interested()"><ion-icon *ngIf="!isInterestedIn()" name="star-outline"></ion-icon><ion-icon *ngIf="isInterestedIn()" name="star"></ion-icon><span *ngIf="!isInterestedIn()">{{'ACTIVITY_DETAIL_INTERESTED' | translate}}</span><span *ngIf="isInterestedIn()">{{'ACTIVITY_DETAIL_NOTINTERESTED' | translate}}</span></button>
 
     <div class="item-list">
+        <div *ngIf="activity.who === 'family' || activity.who === 'adults' || activity.who === 'children'"class="item-list-header">{{'ACTIVITY_DETAIL_WHO' | translate}}</div>
+        <div *ngIf="activity.who === 'family'" class="item-list-body" style="white-space:pre-wrap;">{{'ACTIVITY_DETAIL_WHO_FAMILY' | translate}}</div>
+        <div *ngIf="activity.who === 'adults'" class="item-list-body" style="white-space:pre-wrap;">{{'ACTIVITY_DETAIL_WHO_ADULTS' | translate}}</div>
+        <div *ngIf="activity.who === 'children'" class="item-list-body" style="white-space:pre-wrap;">{{'ACTIVITY_DETAIL_WHO_CHILDREN' | translate}}</div>
         <div class="item-list-header">{{'ACTIVITY_DETAIL_INFO' | translate}}</div>
         <div class="item-list-body" style="white-space:pre-wrap;">{{activity.info[translate.currentLang]}}</div>
         <div class="item-list-header">{{'ACTIVITY_DETAIL_ORGANISER' | translate}}</div>
         <div class="item-list-body">{{activity.organiser}}</div>
-        <div class="item-list-header" *ngIf="activity.maxAmountOfParticipants" >{{'ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS' | translate}}</div>
-        <div class="item-list-body" *ngIf="activity.maxAmountOfParticipants" >{{activity.maxAmountOfParticipants}}</div>
-
+        <div *ngIf="activity.maxAmountOfParticipants > 0" class="item-list-header">{{'ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS' | translate}}</div>
+        <div *ngIf="activity.maxAmountOfParticipants > 0" class="item-list-body">{{activity.maxAmountOfParticipants}}</div>
         <div class="item-list-header">{{'ACTIVITY_DETAIL_PARTICIPANTS' | translate}}</div>
         <div class="item-list-body"><div *ngFor="let participant of participantNames | sort"><span [ngClass]="{'thisUser': isThisUser(participant)}">{{participant}}</span></div></div>
     </div>

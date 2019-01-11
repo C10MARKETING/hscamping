@@ -119,7 +119,7 @@ let pipes:any[] = [
       backButtonText: '',
       platforms: {
         ios: {
-            statusbarPadding: true,
+            statusbarPadding: true
         }
       },
       mode: 'md'

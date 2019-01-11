@@ -76,8 +76,8 @@ export class ActivitiesPage {
       this.dates.sort((a,b) => new Date(a).getTime() - new Date(b).getTime());
 
       // show a maximum of 14 days
-      if (this.dates.length > 14) {
-        this.dates.length = 14;
+      if (this.dates.length > 40) {
+        this.dates.length = 40;
       }
     });
   }

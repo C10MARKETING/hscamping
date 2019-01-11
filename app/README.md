@@ -9,7 +9,7 @@ Then check that you have the latest Ionic CLI and Cordova installed:
 Then run these commands in the root folder of the app:
 
 - $ npm install
-- $ ionic serve
+- $ ionic serve  (hvis den fejler med timeout, kør: npm run ionic:serve)
 - $ ionic state restore
 
 - $ npm run build --aot (to ensure that we get an aot-optimized build)
@@ -45,3 +45,10 @@ ionic package build ios --profile hscamping_prod --release
 
 - ionic package download BUILD_ID (after the service has produced the .apk/.ipa (usually < 30sec) - type "ionic package list" and
 "ionic package info BUILD_ID" for more info).
+
+
+
+
+Ekstra:
+Downgrade version af ionic:
+npm i -g ionic@3.19.0

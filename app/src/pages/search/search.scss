@@ -1,4 +1,42 @@
+
+
+
+
+
+
 page-search {
+    .input {
+        border: 1px solid color($colors, edge);
+        background-color: color($colors, secondary);
+    }
+
+    .item {
+        background-color: transparent;
+    }
+
+    .button {
+        color: color($colors, text);
+        font-weight: bold;
+        border: 1px solid color($colors, edge);
+        background-color: color($colors, secondary);
+        box-shadow: none;
+        height: 4rem;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        .button-inner{
+            justify-content:flex-start;
+        }
+
+        .icon {
+            line-height: inherit;
+        }
+
+    }
+    .searchbar-clear-icon{
+    border:0px;
+    margin-top:0px;
+    background-color:transparent;}
     .title {
         text-align: center;
     }

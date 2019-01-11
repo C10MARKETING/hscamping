@@ -9,7 +9,8 @@
 
   <h2 class="title">{{'SEARCH_CALENDAR' | translate}}</h2>
 
-  <p-calendar [(ngModel)]="selectedDate" (onSelect)="showDate()" [inline]="true" [locale]="lang" [showOtherMonths]="false"></p-calendar>
-
-
+  <p-calendar [(ngModel)]="rangeDates" selectionMode="range" pattern="dd.MM.yyyy" [inline]="true" [locale]="lang" [showOtherMonths]="false" [minDate]="minDate"></p-calendar>
+    <button class="button button-md button-default button-default-md button-full button-full-md ion-button full" pButton type="button" (click)="showDate()" label="{{'SEARCH_CALENDAR' | translate}}"></button>
+    <br/>
+    <!--<div *ngFor="let date of rangeDates"> {{date}} </div>-->
 </ion-content>

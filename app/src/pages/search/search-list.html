@@ -8,14 +8,14 @@
   <p class="subheader" *ngIf="activityService.searchObject && activityService.searchObject.searchMode == 'string'">{{'SEARCH_SEARCH' | translate}} {{currentSearch}}</p>
 
   <div *ngIf="dates.length == 0">
-    <p class="subheader" style="margin-bottom: 8px;" *ngIf="activityService.searchObject && activityService.searchObject.searchMode == 'date'">{{'SEARCH_SEARCH' | translate}} {{currentSearch | localizeDate}}</p>
-
+    <div class="subheader" style="margin-bottom: 8px;" *ngIf="activityService.searchObject && activityService.searchObject.searchMode == 'date'">{{'SEARCH_SEARCH' | translate}} {{this.activityService.searchObject.searchRule | localizeDate}} - {{this.activityService.searchObject.searchRule2 | localizeDate}}</div>
+    
     <p class="subheader">{{noDates}}</p>
   </div>
-
+  <p *ngIf="activityService.searchObject && activityService.searchObject.searchMode == 'date' && dates.length > 0" class="subheader" style="margin-bottom: 8px;">{{'SEARCH_SEARCH' | translate}} {{this.activityService.searchObject.searchRule | localizeDate}} - {{this.activityService.searchObject.searchRule2 | localizeDate}}</p>
   <div *ngFor="let date of dates | sortByDate" style="margin-bottom:25px;">
 
-    <p *ngIf="activityService.searchObject && activityService.searchObject.searchMode == 'date'" class="subheader" style="margin-bottom: 8px;">{{'SEARCH_SEARCH' | translate}} {{date | localizeDate}}</p>
+    <p *ngIf="activityService.searchObject && activityService.searchObject.searchMode == 'date'" class="subheader" style="margin-bottom: 8px;"><!--{{date | localizeDate}}--></p>
     <p style="margin-bottom: 8px;">{{date | localizeDate}}</p>
 
     <ion-list>

@@ -22,6 +22,7 @@ export class SearchListPage {
   dates: any[] = [];
   currentSub: any;
   currentSearch: string;
+  rangeDates: Date[];
   loading: string;
   noActivities: string;
   noDates: string;
@@ -62,9 +63,9 @@ export class SearchListPage {
       }
       // match chosen date with date of each activity
       else if (this.activityService.searchObject && this.activityService.searchObject.searchMode === 'date') {
-        this.currentItems = this.currentItems.filter(activity => (activity.date === this.activityService.searchObject.searchRule));
+        this.currentItems = this.currentItems.filter(activity => ((activity.date <= this.activityService.searchObject.searchRule2) && (activity.date >= this.activityService.searchObject.searchRule)));
       }
-
+       
       this.dates = [];
 
       this.currentItems.forEach(activity => {
@@ -74,12 +75,11 @@ export class SearchListPage {
       if (this.dates.length === 0) {
         this.noDates = this.noActivities;
       }
-
       this.dates.sort((a,b) => new Date(a).getTime() - new Date(b).getTime());
 
-/*      if (this.dates.length > 2) {
-        this.dates.length = 2;
-      }*/
+      //if (this.dates.length > 2) {
+      //  this.dates.length = 2;
+      //}
     });
   }
 

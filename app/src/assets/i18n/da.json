@@ -5,12 +5,12 @@
   "GETSTARTED_START": "KOM I GANG",
 
   "GETSTARTED1_TITLE": "Din personlige guide til oplevelser og aktiviter på ferien",
-  
+
   "GETSTARTED2_TITLE": "Hold dig opdateret",
   "GETSTARTED2_INFO1": "Se hvad der sker på pladsen",
   "GETSTARTED2_INFO2": "Søg efter aktiviteter",
   "GETSTARTED2_INFO3": "Tilføj dine aktiviteter",
-  "GETSTARTED2_INFO4": "Tilmeld dig", 
+  "GETSTARTED2_INFO4": "Tilmeld dig",
 
   "GETSTARTED3_TITLE": "Undgå at misse",
   "GETSTARTED3_INFO1": "Tips og påmindelser sikrer at du ikke går glip af noget",
@@ -39,7 +39,7 @@
   "SIGNUP_GUEST_ON_PARTNER": "Feriepartner Henne Strand",
   "SIGNUP_GUEST_ON_EVERYONE": "Ingen af ovennævnte",
   "SIGNUP_ERROR": "Fejl ved oprettelse af bruger.",
-  "SIGNUP_PREFERRED_LANGUAGE": "Foretrukne sprog", 
+  "SIGNUP_PREFERRED_LANGUAGE": "Foretrukne sprog",
 
   "TAB1_TITLE": "Hjem",
   "TAB2_TITLE": "Aktiviteter",
@@ -77,8 +77,12 @@
   "ACTIVITY_DETAIL_PRICE_FREE": "Gratis",
   "ACTIVITY_DETAIL_FREE_WITH_PACKAGE": "gratis med aktivitetspakke",
   "ACTIVITY_DETAIL_INFO": "Info",
+  "ACTIVITY_DETAIL_WHO": "Aktivitet for",
+  "ACTIVITY_DETAIL_WHO_FAMILY": "Hele familien",
+  "ACTIVITY_DETAIL_WHO_ADULTS": "Voksne",
+  "ACTIVITY_DETAIL_WHO_CHILDREN": "Børn",
   "ACTIVITY_DETAIL_ORGANISER": "Arrangør",
-  "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS": "Maks. deltagere",
+  "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS": "Maks deltagere",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED": "Der er p.t. ingen ledige pladser",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED_MAX": "maks",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED_PARTICIPANTS": "deltagere",

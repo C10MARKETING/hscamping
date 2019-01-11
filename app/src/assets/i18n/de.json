@@ -5,12 +5,12 @@
   "GETSTARTED_START": "ERSTE SCHRITTE",
 
   "GETSTARTED1_TITLE": "Ihr persönlicher Guide mit allen Erlebnissen und Aktivitäten in Ihren Ferien",
-  
+
   "GETSTARTED2_TITLE": "Bleiben Sie immer auf dem Laufenden",
   "GETSTARTED2_INFO1": "Sehen Sie was auf dem Platz passiert",
   "GETSTARTED2_INFO2": "Suchen Sie nach Aktivitäten",
   "GETSTARTED2_INFO3": "Aktivitäten hinzufügen",
-  "GETSTARTED2_INFO4": "Anmelden", 
+  "GETSTARTED2_INFO4": "Anmelden",
 
   "GETSTARTED3_TITLE": "Verpassen Sie nichts",
   "GETSTARTED3_INFO1": "Tipps und Erinnerungen sorgen dafür, dass Sie nichts verpassen",
@@ -39,7 +39,7 @@
   "SIGNUP_GUEST_ON_PARTNER": "Feriepartner Henne Strand",
   "SIGNUP_GUEST_ON_EVERYONE": "Keiner von obengenannten",
   "SIGNUP_ERROR": "Fehlermeldung bei Erstellung des Benutzerkontos.",
-  "SIGNUP_PREFERRED_LANGUAGE": "Bevorzugte Sprache", 
+  "SIGNUP_PREFERRED_LANGUAGE": "Bevorzugte Sprache",
 
   "TAB1_TITLE": "Zuhause",
   "TAB2_TITLE": "Aktivitäten",
@@ -77,6 +77,10 @@
   "ACTIVITY_DETAIL_PRICE_FREE": "Gratis",
   "ACTIVITY_DETAIL_FREE_WITH_PACKAGE": "Gratis mit Aktivitätspaket",
   "ACTIVITY_DETAIL_INFO": "Info",
+  "ACTIVITY_DETAIL_WHO": "Aktivitäten für",
+  "ACTIVITY_DETAIL_WHO_FAMILY": "Familie",
+  "ACTIVITY_DETAIL_WHO_ADULTS": "Erwachsene",
+  "ACTIVITY_DETAIL_WHO_CHILDREN": "Kinder",
   "ACTIVITY_DETAIL_ORGANISER": "Veranstalter",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS": "Teilnehmergrenze",
   "ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS_EXCEEDED": "Zur Zeit keine freien Plätze",

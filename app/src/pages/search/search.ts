@@ -13,7 +13,8 @@ import * as moment from 'moment';
 export class SearchPage {
 
   selectedDate: Date;
-
+  rangeDates: Date[];
+  minDate: Date;
   da: any;
   de: any;
 
@@ -40,6 +41,12 @@ export class SearchPage {
         monthNamesShort: [ 'Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez' ]
     };
     this.lang = this.translate.currentLang === 'de' ? this.de : this.da;
+    let today = new Date();
+    let month = today.getMonth();
+    let year = today.getFullYear();
+    this.minDate = new Date();
+    this.minDate.setMonth(month);
+    this.minDate.setFullYear(year);
   }
 
   search(event:any) {
@@ -48,7 +55,13 @@ export class SearchPage {
   }
 
   showDate() {
-    this.activityService.searchObject = { searchMode: 'date', searchRule: moment(this.selectedDate).format('YYYY-MM-DD')};
+    this.activityService.searchObject = {
+        searchMode: 'date', 
+        searchRule: moment(this.rangeDates[0]).format('YYYY-MM-DD'),
+        searchRule2: this.rangeDates[1] === null ? moment(this.rangeDates[0]).format('YYYY-MM-DD') : moment(this.rangeDates[1]).format('YYYY-MM-DD')
+    };
+
+    
     this.navCtrl.push(SearchListPage);
   }
 
