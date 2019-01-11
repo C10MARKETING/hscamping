@@ -39,8 +39,14 @@
         <div class="item-list-body" style="white-space:pre-wrap;">{{activity.info[translate.currentLang]}}</div>
         <div class="item-list-header">{{'ACTIVITY_DETAIL_ORGANISER' | translate}}</div>
         <div class="item-list-body">{{activity.organiser}}</div>
+<<<<<<< HEAD
         <div *ngIf="activity.maxAmountOfParticipants > 0" class="item-list-header">{{'ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS' | translate}}</div>
         <div *ngIf="activity.maxAmountOfParticipants > 0" class="item-list-body">{{activity.maxAmountOfParticipants}}</div>
+=======
+        <div class="item-list-header" *ngIf="activity.maxAmountOfParticipants" >{{'ACTIVITY_DETAIL_MAX_AMOUNT_OF_PARTICIPANTS' | translate}}</div>
+        <div class="item-list-body" *ngIf="activity.maxAmountOfParticipants" >{{activity.maxAmountOfParticipants}}</div>
+
+>>>>>>> origin/master
         <div class="item-list-header">{{'ACTIVITY_DETAIL_PARTICIPANTS' | translate}}</div>
         <div class="item-list-body"><div *ngFor="let participant of participantNames | sort"><span [ngClass]="{'thisUser': isThisUser(participant)}">{{participant}}</span></div></div>
     </div>
